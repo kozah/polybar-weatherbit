@@ -1,9 +1,8 @@
 #!/bin/sh
 
 API="http://api.weatherbit.io/v2.0"
-KEY=""
-
-CITY_ID=""
+API_KEY="$(cat config.json | jq -r ".API_KEY")"
+CITY_ID="$(cat config.json | jq -r ".CITY_ID")"
 UNITS="M"
 SYMBOL="º"
 FORECAST_DAYS="3"
@@ -78,8 +77,8 @@ get_icon() {
     echo $icon
 }
 
-current=$(curl -sf "$API/current?city_id=$CITY_ID&units=$UNITS&key=$KEY")
-forecast=$(curl -sf "$API/forecast/daily?city_id=$CITY_ID&days=$((FORECAST_DAYS+1))&units=$UNITS&key=$KEY")
+current=$(curl -sf "$API/current?city_id=$CITY_ID&units=$UNITS&key=$API_KEY")
+forecast=$(curl -sf "$API/forecast/daily?city_id=$CITY_ID&days=$((FORECAST_DAYS+1))&units=$UNITS&key=$API_KEY")
 
 if [ -n "$current" ] && [ -n "$forecast" ]; then
 
