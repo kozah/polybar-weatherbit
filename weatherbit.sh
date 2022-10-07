@@ -1,8 +1,8 @@
 #!/bin/sh
 
 API="http://api.weatherbit.io/v2.0"
-API_KEY="$(cat config.json | jq -r ".API_KEY")"
-CITY_ID="$(cat config.json | jq -r ".CITY_ID")"
+API_KEY="$(cat ~/.config/polybar/my-scripts/weather-bit/config.json | jq -r ".API_KEY")"
+CITY_ID="$(cat ~/.config/polybar/my-scripts/weather-bit/config.json | jq -r ".CITY_ID")"
 UNITS="M"
 SYMBOL="º"
 FORECAST_DAYS="3"
@@ -91,7 +91,7 @@ if [ -n "$current" ] && [ -n "$forecast" ]; then
     # if you want night-time low temp (7PM to 7AM) use .data[0].low_temp
     c_min_temp=$(echo "$forecast" | jq -r ".data[0].min_temp" | cut -d "." -f 1)
     c_prob_precip=$(echo "$forecast" | jq -r ".data[0].pop")
-    c_precip=$(echo "$forecast" | jq -r ".data[0].precip")
+    c_precip=$(printf %.2f $(echo "$forecast" | jq -r ".data[0].precip"))
 
     if [ "$c_prob_precip" -gt "0" ]; then
         rain=$(echo "[ ${c_precip}mm]")
