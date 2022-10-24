@@ -7,6 +7,9 @@ What you need:
 * Weather Icons: to display fancy weather icons.
 * WeatherBit API Key ([Learn more here](https://www.weatherbit.io/pricing))
 
+## Installation
+
+Clone this repo and put it wherever you want, but don't forget to remember where.
 
 ## Configuration
 
@@ -26,7 +29,7 @@ modules = ... weatherbit ...
 
 [module/weatherbit]
 type = custom/script
-exec = ~/path_to_the_folder/weather-bit/weatherbit.sh
+exec = ~/path_to_the_folder/polybar-weatherbit/weatherbit.sh
 interval = 600
 # label-font = 3
 ```
